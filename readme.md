@@ -11,3 +11,5 @@ The goal of this project is to develop a data warehouse solution using Azure Syn
 
 ## Challenges
 1. Initially, setting up data source for copy task could not connect to postgres database with error `no pg_hba.conf entry for host "4X.XXX.XX.XXX", user "userXXX", database "dbXXX"`. It was resolved by enabling encryption.
+
+2. Data files were too heavy to commit to github. Push command kept failing with `Large files detected.` even after these files have been uncommitted. It turns out they were still in git log history and had to be forced out via `git filter-branch --index-filter "git rm -r --cached --ignore-unmatch data" HEAD`
