@@ -2,7 +2,7 @@
 	"name": "transform_trips",
 	"properties": {
 		"content": {
-			"query": "create table trips(\n    trip_id varchar(50),\n    rider_id int,\n    date_id varchar(50),\n    start_station_id varchar(50),\n    end_station_id varchar(50),\n    rideable_type varchar(50),\n    amount decimal(10,2)\n);\n\ninsert into trips\nselect \nt.trip_id,\np.rider_id, \nd.date_id,\nt.start_station_id, \nt.end_station_id,\nt.rideable_type,\np.amount\nfrom payment p join trip t on p.rider_id=t.rider_id\njoin date d on format(cast(t.start_at as datetime2),'yyyyMMddHHmmssffff')=d.date_id;\n\nselect top 100 * from trips;",
+			"query": "create table trips(\n    trip_id varchar(50),\n    rider_id int,\n    date_id varchar(50),\n    start_station_id varchar(50),\n    end_station_id varchar(50),\n    trip_duration_mins int,\n    rider_age_ride_start int,\n    rider_age_account_start int,\n    bike_id int\n);\n\ninsert into trips\nselect \nt.trip_id,\np.rider_id, \nd.date_id,\nt.start_station_id, \nt.end_station_id,\ndatediff(minute,cast(t.start_at as datetime2),cast(t.ended_at as datetime2)) as trip_duration_mins,\ndatediff(year,cast(r.birthday as datetime2),cast(t.start_at as datetime2)) as rider_age_ride_start,\ndatediff(year,cast(r.birthday as datetime2),cast(r.account_start_date as datetime2)) as rider_age_account_start,\nb.bike_id\nfrom payment p join trip t on p.rider_id=t.rider_id\njoin date d on format(cast(t.start_at as datetime2),'yyyyMMddHHmmssffff')=d.date_id\njoin rider r on t.rider_id = r.rider_id\njoin bikes b on t.rideable_type=b.name;\n\nselect top 100 * from trips;",
 			"metadata": {
 				"language": "sql"
 			},
