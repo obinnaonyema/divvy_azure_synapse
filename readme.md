@@ -36,6 +36,10 @@ In Azure Synapse, the 4 files were loaded as external staging tables `trip`, `pa
 
 Transformation scripts were written to create final tables according to the star schema: fact tables `trips` and `payments` and dimension tables `riders`, `date`, `stations`
 
+## Transform
+
+Transformation was done in line with the entity relationship diagram as guiding architecture. SQL scripts are in the sql folder.
+
 ## Challenges
 1. Initially, setting up data source for copy task could not connect to postgres database with error `no pg_hba.conf entry for host "4X.XXX.XX.XXX", user "userXXX", database "dbXXX"`. It was resolved by enabling encryption.
 
