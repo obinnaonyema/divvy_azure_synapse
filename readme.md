@@ -7,7 +7,34 @@ The goal of this project is to develop a data warehouse solution using Azure Syn
 * Transforming the data into the star schema;
 * and finally, viewing the reports from Analytics.
 
+![ERD](images/divvy_erd.png)
 
+## Dataset
+The data contains 4 initial tables:
+* trip with 4584921 records
+![trip](images/trip_table_raw.PNG)
+
+* station with 838 records
+![station](images/station_table_raw.PNG)
+
+* payment with 1946607 records
+![payment](images/payment_table_raw.PNG)
+
+* rider with 75000 records
+![rider](images/rider_table_raw.PNG)
+
+## Extract and Load
+In Azure synapse, linked services were set up to postgres and azure blob storage.
+
+![linked services](images/linked_services.PNG)
+
+Using postgres as source and azure blob storage as destination, the 4 tables were ingested into blob storage and saved as comma delimited files.
+
+In Azure Synapse, the 4 files were loaded as external staging tables `trip`, `payment`, `rider`,`station` into Azure SQL pool via Polybase. 
+
+![SQL Pool setup](images/dwh_sql_pool_setup.PNG)
+
+Transformation scripts were written to create final tables according to the star schema: fact tables `trips` and `payments` and dimension tables `riders`, `date`, `stations`
 
 ## Challenges
 1. Initially, setting up data source for copy task could not connect to postgres database with error `no pg_hba.conf entry for host "4X.XXX.XX.XXX", user "userXXX", database "dbXXX"`. It was resolved by enabling encryption.
