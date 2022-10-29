@@ -1,0 +1,17 @@
+{
+	"name": "transform_payment",
+	"properties": {
+		"content": {
+			"query": "create table payments(\n    payment_id int,\n    trip_id varchar(50),\n    rider_id int,\n    date_id varchar(50),\n    amount DECIMAL(10,2)\n)\n\ninsert into payments\nselect top 100 \np.payment_id,\nt.trip_id,\np.rider_id, \nd.date_id,\np.amount\nfrom payment p join trip t on p.rider_id=t.rider_id\njoin date d on format(cast(t.start_at as datetime2),'yyyyMMddHHmmssffff')=d.date_id;\n\nselect top 100 * from payments",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "divvydwhpool",
+				"poolName": "divvydwhpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

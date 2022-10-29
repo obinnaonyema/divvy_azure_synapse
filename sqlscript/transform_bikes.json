@@ -1,0 +1,17 @@
+{
+	"name": "transform_bikes",
+	"properties": {
+		"content": {
+			"query": "\ncreate table bikes(\n    bike_id int IDENTITY(1,1) not null,\n    name varchar(50)\n);\n\ninsert into bikes\nselect distinct rideable_type from trip;\n\nselect * from bikes;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "divvydwhpool",
+				"poolName": "divvydwhpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
