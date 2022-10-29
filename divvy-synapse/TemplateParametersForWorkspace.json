@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "divvy-synapse"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzurePostgreSql1_connectionString": {
+			"value": ""
+		},
+		"divvy-synapse-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"divvy-synapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://divvy.dfs.core.windows.net"
+		}
+	}
+}
