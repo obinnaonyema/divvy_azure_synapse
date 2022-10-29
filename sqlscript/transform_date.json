@@ -1,0 +1,17 @@
+{
+	"name": "transform_date",
+	"properties": {
+		"content": {
+			"query": "create table date (\n    date_id varchar(50) not null,\n    start_at datetime2 not null,\n    ended_at datetime2 not null,\n    year int not null,\n    quarter int not null,\n    month int not null,\n    week int not null,\n    weekday int not null,\n    day int not null,\n    hour int not null,\n    minute int not null,\n    second int not null\n);\n\ninsert into date\nselect format(cast(start_at as datetime2),'yyyyMMddHHmmssffff') date_id,\ncast(start_at as datetime2) start_at,\ncast(ended_at as datetime2) ended_at,\ndatepart(year,cast(start_at as datetime2)) year,\ndatepart(quarter,cast(start_at as datetime2)) quarter,\ndatepart(month,cast(start_at as datetime2)) month,\ndatepart(week,cast(start_at as datetime2)) week,\ndatepart(weekday,cast(start_at as datetime2)) weekday,\ndatepart(day,cast(start_at as datetime2)) day,\ndatepart(hour,cast(start_at as datetime2)) hour,\ndatepart(minute,cast(start_at as datetime2)) minute,\ndatepart(second,cast(start_at as datetime2)) second\nfrom trip;\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "divvydwhpool",
+				"poolName": "divvydwhpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

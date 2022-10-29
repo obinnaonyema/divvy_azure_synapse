@@ -1,0 +1,17 @@
+{
+	"name": "load_trip",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat2') \n\tCREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat2] \n\tWITH ( FORMAT_TYPE = DELIMITEDTEXT ,\n\t       FORMAT_OPTIONS (\n\t\t\t FIELD_TERMINATOR = ',',\n\t\t\t STRING_DELIMITER = '\"',\n\t\t\t USE_TYPE_DEFAULT = FALSE\n\t\t\t))\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'divvy_divvy_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [divvy_divvy_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://divvy@divvy.dfs.core.windows.net', \n\t\tTYPE = HADOOP \n\t)\nGO\n\nCREATE EXTERNAL TABLE trip (\n\t[trip_id] varchar(50),\n\t[rideable_type] varchar(50),\n\t[start_at] varchar(50),\n\t[ended_at] varchar(50),\n\t[start_station_id] varchar(50),\n\t[end_station_id] varchar(50),\n\t[rider_id] varchar(50)\n\t)\n\tWITH (\n\tLOCATION = 'publictrip.csv',\n\tDATA_SOURCE = [divvy_divvy_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat2]\n\t)\nGO\n\n\nSELECT TOP 100 * FROM dbo.trip\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "divvydwhpool",
+				"poolName": "divvydwhpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "transform_trips",
+	"properties": {
+		"content": {
+			"query": "create table trips(\n    trip_id varchar(50),\n    rider_id int,\n    date_id varchar(50),\n    start_station_id varchar(50),\n    end_station_id varchar(50),\n    rideable_type varchar(50),\n    amount decimal(10,2)\n);\n\ninsert into trips\nselect \nt.trip_id,\np.rider_id, \nd.date_id,\nt.start_station_id, \nt.end_station_id,\nt.rideable_type,\np.amount\nfrom payment p join trip t on p.rider_id=t.rider_id\njoin date d on format(cast(t.start_at as datetime2),'yyyyMMddHHmmssffff')=d.date_id;\n\nselect top 100 * from trips;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "divvydwhpool",
+				"poolName": "divvydwhpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
