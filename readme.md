@@ -28,6 +28,8 @@ In Azure synapse, linked services were set up to postgres and azure blob storage
 
 ![linked services](images/linked_services.PNG)
 
+![blob storage](images/blob_storage.PNG)
+
 Using postgres as source and azure blob storage as destination, the 4 tables were ingested into blob storage and saved as comma delimited files.
 
 In Azure Synapse, the 4 files were loaded as external staging tables `trip`, `payment`, `rider`,`station` into Azure SQL pool via Polybase. 
