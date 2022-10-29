@@ -28,9 +28,9 @@ In Azure synapse, linked services were set up to postgres and azure blob storage
 
 ![linked services](images/linked_services.PNG)
 
-![blob storage](images/blob_storage.PNG)
-
 Using postgres as source and azure blob storage as destination, the 4 tables were ingested into blob storage and saved as comma delimited files.
+
+![blob storage](images/blob_storage.PNG)
 
 In Azure Synapse, the 4 files were loaded as external staging tables `trip`, `payment`, `rider`,`station` into Azure SQL pool via Polybase. 
 
@@ -46,3 +46,5 @@ Transformation was done in line with the entity relationship diagram as guiding 
 1. Initially, setting up data source for copy task could not connect to postgres database with error `no pg_hba.conf entry for host "4X.XXX.XX.XXX", user "userXXX", database "dbXXX"`. It was resolved by enabling encryption.
 
 2. Data files were too heavy to commit to github. Push command kept failing with `Large files detected.` even after these files have been uncommitted. It turns out they were still in git log history and had to be forced out via `git filter-branch --index-filter "git rm -r --cached --ignore-unmatch data" HEAD`
+
+3. Creating a date dimension in Azure Synapse came with challenges as I could not use recursive CTEs which was the first approach I attempted. I adapted the [Azure SQL script for creating date timension by Meagan Longoria](https://datasavvy.me/2016/08/06/create-a-date-dimension-in-azure-sql-data-warehouse/) to resolve the challenge.
