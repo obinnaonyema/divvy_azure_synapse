@@ -14,15 +14,19 @@ The goal of this project is to develop a data warehouse solution using Azure Syn
 ## Dataset
 The data contains 4 initial tables:
 * trip with 4584921 records
+
 ![trip](images/trip_table_raw.PNG)
 
 * station with 838 records:
+
 ![station](images/station_table_raw.PNG)
 
 * payment with 1946607 records:
+
 ![payment](images/payment_table_raw.PNG)
 
 * rider with 75000 records:
+
 ![rider](images/rider_table_raw.PNG)
 
 ## Extract and Load
