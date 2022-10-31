@@ -1,3 +1,5 @@
+# Building an Azure Data Warehouse for Bikeshare Data Analytics
+
 Divvy is a bike sharing program in Chicago, Illinois USA that allows riders to purchase a pass at a kiosk or use a mobile application to unlock a bike at stations around the city and use the bike for a specified amount of time. The bikes can be returned to the same station or to another station. The City of Chicago makes the anonymized bike trip data publicly available for projects like this where we can analyze the data.
 
 The goal of this project is to develop a data warehouse solution using Azure Synapse Analytics. It involved:
@@ -14,13 +16,13 @@ The data contains 4 initial tables:
 * trip with 4584921 records
 ![trip](images/trip_table_raw.PNG)
 
-* station with 838 records
+* station with 838 records:
 ![station](images/station_table_raw.PNG)
 
-* payment with 1946607 records
+* payment with 1946607 records:
 ![payment](images/payment_table_raw.PNG)
 
-* rider with 75000 records
+* rider with 75000 records:
 ![rider](images/rider_table_raw.PNG)
 
 ## Extract and Load
